@@ -11,17 +11,18 @@ const trackList = [
     cover: "media/covers/IMG_20260819_233753_268.jpg",
     src: "media/songs/Rahat Fateh Ali Khan - Dil To Bachcha Hai.mp3"
   },
-{
+  {
     title: "Track 3 - Khaani - (Orginal Soundtrack)",
     artist: "Rahat Fateh Ali Khan",
     cover: "media/covers/ab67616d0000b273db324126b3df547d8269a426.jpeg",
-    src: "media/songs/Rahat Fateh Ali Khan - Khaani OST.mp3"
+    src: "media/songs/Rahat Fateh Ali Khan - Khaani OST.flac"
   }
 ];
 
 let currentTrackIndex = 0;
 let isPlaying = false;
 
+const playerWindow = document.querySelector(".player-window");
 const audio = document.getElementById("audio-engine");
 const playBtn = document.getElementById("play-btn");
 const stopBtn = document.getElementById("stop-btn");
@@ -56,6 +57,10 @@ function loadTrack(index) {
   audio.src = track.src;
   coverArt.src = track.cover;
   trackStatus.textContent = `Playing: ${track.title}`;
+  
+  // Update the CSS custom variable for background blur
+  document.documentElement.style.setProperty('--current-cover', `url("${track.cover}")`);
+  
   renderPlaylist();
 }
 
@@ -64,6 +69,9 @@ function playAudio() {
   isPlaying = true;
   playBtn.textContent = "⏸";
   equalizer.classList.add("active");
+  
+  // Activate blurred background glow & pulse effect
+  playerWindow.classList.add("playing");
 }
 
 function pauseAudio() {
@@ -71,6 +79,9 @@ function pauseAudio() {
   isPlaying = false;
   playBtn.textContent = "▶";
   equalizer.classList.remove("active");
+  
+  // Deactivate ambient glow
+  playerWindow.classList.remove("playing");
 }
 
 function togglePlay() {
