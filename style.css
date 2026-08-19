@@ -1,6 +1,6 @@
 :root {
   --bg-gradient: radial-gradient(circle at 50% 20%, #1a102f, #08070d 85%);
-  --window-bg: rgba(18, 16, 28, 0.75);
+  --window-bg: rgba(18, 16, 28, 0.68);
   --window-border: rgba(255, 255, 255, 0.08);
   --accent-cyan: #00f0ff;
   --accent-pink: #ff2a85;
@@ -8,7 +8,8 @@
   --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   --text-main: #f0f3f8;
   --text-muted: #8a8fa3;
-  --display-bg: rgba(8, 7, 13, 0.85);
+  --display-bg: rgba(8, 7, 13, 0.75);
+  --current-cover: none;
 }
 
 * {
@@ -45,7 +46,70 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dynamic Ambient Background Blur */
+.player-window::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background-image: var(--current-cover);
+  background-size: cover;
+  background-position: center;
+  filter: blur(40px) saturate(220%) brightness(0.45);
+  opacity: 0;
+  transform: scale(1.1);
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Vignette Depth Gradient */
+.player-window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 35%, rgba(8, 7, 13, 0.85) 100%);
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+/* Playing State Glow & Background Effects */
+.player-window.playing {
+  border-color: rgba(0, 240, 255, 0.2);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8),
+              0 0 45px rgba(0, 240, 255, 0.15),
+              0 0 30px rgba(255, 42, 133, 0.1);
+}
+
+.player-window.playing::before {
+  opacity: 0.85;
+  animation: ambientArtworkPulse 7s infinite alternate ease-in-out;
+}
+
+.player-window.playing::after {
+  opacity: 1;
+}
+
+@keyframes ambientArtworkPulse {
+  0% {
+    transform: scale(1.15) rotate(0deg);
+    filter: blur(35px) saturate(200%) brightness(0.5);
+  }
+  50% {
+    transform: scale(1.3) rotate(2deg);
+    filter: blur(48px) saturate(250%) brightness(0.6);
+  }
+  100% {
+    transform: scale(1.2) rotate(-1.5deg);
+    filter: blur(38px) saturate(220%) brightness(0.45);
+  }
 }
 
 /* --- Window Title Bar --- */
@@ -484,4 +548,3 @@ input[type="range"]::-webkit-slider-thumb:hover {
     width: 45px;
   }
 }
-
