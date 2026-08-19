@@ -15,7 +15,7 @@ const trackList = [
     title: "Track 3 - Khaani - (Orginal Soundtrack)",
     artist: "Rahat Fateh Ali Khan",
     cover: "media/covers/ab67616d0000b273db324126b3df547d8269a426.jpeg",
-    src: "media/songs/Rahat Fateh Ali Khan - Khaani OST.flac"
+    src: "media/songs/Rahat Fateh Ali Khan - Khaani OST.mp3"
   }
 ];
 
