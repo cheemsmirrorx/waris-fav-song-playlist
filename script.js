@@ -16,6 +16,12 @@ const trackList = [
     artist: "Rahat Fateh Ali Khan",
     cover: "media/covers/ab67616d0000b273db324126b3df547d8269a426.jpeg",
     src: "media/songs/Rahat Fateh Ali Khan - Khaani OST.mp3"
+  },
+  {
+    title: "Track 4 - LUZ ROJA - bxkq (PHONK)",
+    artist: "bxkq",
+    cover: "media/covers/IMG_20260820_222736_376.jpg",
+    src: "media/songs/LUZ ROJA - bxkq.mp3"
   }
 ];
 
