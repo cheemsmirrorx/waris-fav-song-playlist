@@ -1,6 +1,6 @@
 const trackList = [
  {
-    title: "Track 0 - 𝑃𝑎𝑘𝑖𝑠𝑡𝑎𝑛𝑖 𝑆𝑜𝑛𝑔𝑠 𝑡ℎ𝑎𝑡 𝑦𝑜𝑢 𝑤𝑖𝑙𝑙 𝑙𝑜𝑣𝑒 » 🤍 )",
+    title: "Track 0 - 𝑃𝑎𝑘𝑖𝑠𝑡𝑎𝑛𝑖 𝑆𝑜𝑛𝑔𝑠 𝑡ℎ𝑎𝑡 𝑦𝑜𝑢 𝑤𝑖𝑙𝑙 𝑙𝑜𝑣𝑒 » ❤️‍🩹✨",
     artist: "Waris Ali",
     cover: "media/covers/file_00000000548c8208aaf74f3d76a2c94d.png",
     src: "media/songs/⊹ ࣪ ˖ᥫ᭡Pakistani playlist that You will loveᥫ᭡⊹ ࣪ ˖( TIMESTAMPS__♡) __(MP3_160K).mp3"
