@@ -239,7 +239,7 @@ There are plenty of things I'd like to experiment with in future versions:
 
 <!-- Add a screenshot of your website here -->
 
-<img src="https://placehold.co/1000x550/111827/ffffff?text=Waris%27+Fav+Songs+%7C+Website+Preview" width="90%" alt="Website Preview">
+<img src="https://i.ibb.co/DgPVxBXK/1787639250551.jpg?text=Waris%27+Fav+Songs+%7C+Website+Preview" width="90%" alt="Website Preview">
 
 </p>
 
