@@ -239,7 +239,7 @@ There are plenty of things I'd like to experiment with in future versions:
 
 <!-- Add a screenshot of your website here -->
 
-<img src="https://placehold.co/1000x550/111827/ffffff?text=Waris%27+Fav+Songs+%7C+Website+Preview](https://media.licdn.com/dms/image/v2/D4D2DAQHX1xHcOI1VSQ/profile-treasury-image-shrink_1280_1280/B4DaA3mj1BHoAY-/0/1787639250551?e=1789326000&v=beta&t=47GLdf-rmhD0CTQwOHtLiVeuQfut945pAEi5YxGQxAk" width="90%" alt="Website Preview">
+<img src="https://placehold.co/1000x550/111827/ffffff?text=Waris%27+Fav+Songs+%7C+Website+Preview" width="90%" alt="Website Preview">
 
 </p>
 
