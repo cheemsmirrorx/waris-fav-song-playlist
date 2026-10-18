@@ -1,4 +1,4 @@
-const trackList = [
+let trackList = [
  {
     title: "Track 0 - 𝑃𝑎𝑘𝑖𝑠𝑡𝑎𝑛𝑖 𝑆𝑜𝑛𝑔𝑠 𝑡ℎ𝑎𝑡 𝑦𝑜𝑢 𝑤𝑖𝑙𝑙 𝑙𝑜𝑣𝑒 » ❤️‍🩹✨",
     artist: "Waris Ali",
@@ -53,7 +53,7 @@ function renderPlaylist() {
   playlistContainer.innerHTML = "";
   trackList.forEach((track, index) => {
     const li = document.createElement("li");
-    li.textContent = `${index + 1}. ${track.title}`;
+    li.textContent = `${track.track_no ?? index + 1}. ${track.title}`;
     if (index === currentTrackIndex) li.classList.add("playing");
     li.addEventListener("click", () => {
       loadTrack(index);
@@ -153,5 +153,28 @@ stopBtn.addEventListener("click", stopAudio);
 nextBtn.addEventListener("click", nextTrack);
 prevBtn.addEventListener("click", prevTrack);
 
+// Load published tracks from Supabase when configured; otherwise keep the bundled playlist.
+async function loadPublishedTracks() {
+  const cfg = window.WARIS_CONFIG;
+  if (!cfg?.SUPABASE_URL || !cfg?.SUPABASE_ANON_KEY || cfg.SUPABASE_URL.includes("YOUR_PROJECT")) return;
+  if (!window.supabase?.createClient) return;
+  try {
+    const client = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+    const { data, error } = await client.from("songs").select("id,title,artist,album,track_no,cover_url,audio_url").eq("published", true).order("track_no", { ascending: true });
+    if (error) throw error;
+    if (Array.isArray(data) && data.length) {
+      trackList = data.map(song => ({
+        id: song.id, title: song.title, artist: song.artist || "Unknown artist",
+        album: song.album || "", track_no: song.track_no, cover: song.cover_url, src: song.audio_url
+      }));
+      currentTrackIndex = 0;
+      loadTrack(0);
+    }
+  } catch (error) {
+    console.warn("Could not load online playlist; using bundled tracks.", error);
+  }
+}
+
 // Initial Load
 loadTrack(0);
+loadPublishedTracks();
