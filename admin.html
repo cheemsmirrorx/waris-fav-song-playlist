@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WarisFavSongs · Admin</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><a class="brand" href="index.html">♫ WarisFavSongs</a><span class="tag">ADMIN CONSOLE</span></header>
+    <section id="login-panel" class="panel login-panel">
+      <p class="eyebrow">PRIVATE ACCESS</p><h1>Welcome back.</h1><p class="muted">Sign in to manage your playlist.</p>
+      <form id="login-form">
+        <label for="username">Admin username</label><input id="username" autocomplete="username" required placeholder="warisadmin">
+        <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Your admin password">
+        <button class="primary" type="submit">Sign in <span>→</span></button><p id="login-message" class="message" role="status"></p>
+      </form>
+      <p class="tiny">First setup? Create your admin user in Supabase Authentication, then set your username and email in <code>config.js</code>.</p>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="welcome"><div><p class="eyebrow">YOUR LIBRARY</p><h1>Music dashboard</h1><p class="muted">Upload tracks and publish them to your live playlist.</p></div><button id="logout" class="ghost">Log out</button></div>
+      <div class="stats"><div class="stat"><span>Total tracks</span><strong id="song-count">0</strong></div><div class="stat"><span>Storage</span><strong>Cloud</strong></div><div class="stat"><span>Website sync</span><strong class="live">Live-ready</strong></div></div>
+      <div class="layout">
+        <section class="panel"><div class="section-head"><div><p class="eyebrow">TRACK DETAILS</p><h2 id="form-heading">Add a song</h2></div><span class="music-icon">♫</span></div>
+          <form id="song-form">
+            <input id="song-id" type="hidden">
+            <label for="title">Song title *</label><input id="title" required maxlength="180" placeholder="e.g. Dil To Bachcha Hai">
+            <div class="two"><div><label for="artist">Artist</label><input id="artist" maxlength="120" placeholder="Artist name"></div><div><label for="album">Album</label><input id="album" maxlength="120" placeholder="Album name"></div></div>
+            <label for="track-no">Track number *</label><input id="track-no" type="number" min="1" max="9999" required value="1">
+            <label for="audio-file">Audio file (MP3, M4A, WAV, OGG) <span class="optional">required for new songs</span></label><input id="audio-file" type="file" accept="audio/mpeg,audio/mp4,audio/wav,audio/ogg,.mp3,.m4a,.wav,.ogg">
+            <label for="cover-file">Album art (JPG, PNG, WebP) <span class="optional">required for new songs</span></label><input id="cover-file" type="file" accept="image/jpeg,image/png,image/webp">
+            <label class="check"><input id="published" type="checkbox" checked> Publish to main website</label>
+            <div class="actions"><button class="primary" id="save-song" type="submit">Upload & publish <span>↗</span></button><button class="ghost" id="cancel-edit" type="button" hidden>Cancel edit</button></div>
+            <p id="song-message" class="message" role="status"></p><p class="tiny">Use audio and artwork you own or have permission to publish. Maximum file sizes depend on your Supabase Storage configuration.</p>
+          </form>
+        </section>
+        <section class="panel library-panel"><div class="section-head"><div><p class="eyebrow">YOUR COLLECTION</p><h2>Manage songs</h2></div><button id="refresh" class="ghost">↻ Refresh</button></div><div id="song-list" class="song-list"><p class="muted">Sign in to load your library.</p></div></section>
+      </div>
+    </section>
+    <footer>WarisFavSongs · Private admin area · <a href="index.html">Open playlist ↗</a></footer>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
